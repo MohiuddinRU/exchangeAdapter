@@ -20,9 +20,9 @@ exports.convertCurrency = async (ctx) => {
         }
         ctx.response.body = {
             data: {
-                requestedCurrency: fromCurrency,
-                convertedCurrency: toCurrency,
-                requestedAmount: amount,
+                fromCurrency,
+                toCurrency,
+                baseAmount: amount,
                 convertedAmount
             },
             status: 200,
