@@ -10,7 +10,8 @@ const Koa = require('koa');
 const bodyParser = require("koa-bodyparser");
 
 // From other file
-const { variables } = require('./variables/index');
+const { variables } = require('./variables');
+
 const router = require('./routes');
 
 // koa object

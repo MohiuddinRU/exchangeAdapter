@@ -6,22 +6,30 @@ const Currency = require("../models/Currency");
 
 exports.convertCurrency = async (ctx) => {
     try {
-        const { fromCurrency, toCurrency, amount } = ctx.request.body;
-        const convertedAmount = await Currency.getCurrency(fromCurrency.toUpperCase(), toCurrency.toUpperCase(), amount);
+        const { fromCurrency, toCurrency, amount } = ctx.params;
+        const convertedAmount = await Currency.getCurrency(
+            fromCurrency.toUpperCase(), 
+            toCurrency.toUpperCase(),
+            amount);
         
         if(!convertedAmount){
             throw{
                 status: 500,
-                message: "Not converted"
+                message: "Error occured in exchange adapter."
             }
         }
         ctx.response.body = {
-            data: convertedAmount,
+            data: {
+                requestedCurrency: fromCurrency,
+                convertedCurrency: toCurrency,
+                requestedAmount: amount,
+                convertedAmount
+            },
             status: 200,
             message: "converted" 
         }
     } catch (err) {
-        ctx.body = { message: err.message }
         ctx.status = err.status || 500
+        ctx.body = { message: err.message }
     }
 };

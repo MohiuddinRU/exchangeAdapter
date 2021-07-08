@@ -3,15 +3,16 @@
 
 //internal dependencise
 
-const { exchangeInformation } = require('../variables/index');
+const {variables} = require('../variables');
 const axios = require("axios");
 
-const {apiKey, baseUrl} = exchangeInformation; 
+const {fixerApiKey, fixerApiUrl} = variables;
 
 exports.getCurrency = async (fromCurrency, toCurrency, amount) => {
 
-    const { data } = await axios.get(`${baseUrl}?access_key=${apiKey}`) 
+    const { data } = await axios.get(`${fixerApiUrl}?access_key=${fixerApiKey}`) 
     const convertedAmount = amount * data.rates[toCurrency] / data.rates[fromCurrency];
 
     return convertedAmount;
 }
+
