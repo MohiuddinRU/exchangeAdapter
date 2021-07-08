@@ -7,7 +7,7 @@ require('dotenv').config();
 
 // Dependencies
 const Koa = require('koa');
-const bodyParser = require('koa-bodyParser');
+const koaBody = require('koa-body');
 
 // From other file
 const { variables } = require('./variables/index');
@@ -16,10 +16,9 @@ const router = require('./routes');
 // koa object
 const app = new Koa();
 
-// Bodyparser Middleware
-app.use(bodyParser());
-
-app.use(router.routes());
+app.use(koaBody());
+app.use(router.routes())
+app.use(router.allowedMethods());
 
 // Start server
 app.listen(variables.appPort, () => {

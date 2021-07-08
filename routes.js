@@ -2,9 +2,10 @@
 
 const Router = require('koa-router');
 
-const { convertCurrency } = require('./controllers/currency');
+const currency  = require('./controllers/currency');
+
 const routers = new Router();
 
-routers.get("convert", convertCurrency);
+routers.get("/convert", currency.convertCurrency);
 
 module.exports = routers;
