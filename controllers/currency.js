@@ -5,12 +5,8 @@
 const Currency = require("../models/Currency");
 
 exports.convertCurrency = async (ctx) => {
-    console.log(ctx.request.body);
-
     try {
         const { fromCurrency, toCurrency, amount } = ctx.request.body;
-        console.log(fromCurrency, toCurrency, amount);
-
         const convertedAmount = await Currency.getCurrency(fromCurrency.toUpperCase(), toCurrency.toUpperCase(), amount);
         
         if(!convertedAmount){
