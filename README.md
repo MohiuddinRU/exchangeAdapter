@@ -1,4 +1,4 @@
-# exchangeAdapter
+# Exchange Adapter
 
 This exchange adapter takes 3 parameters
 You have to pass 3 parameters.
